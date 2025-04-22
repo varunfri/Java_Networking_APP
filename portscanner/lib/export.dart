@@ -21,4 +21,4 @@ export 'package:portscanner/dio_status/net_status.dart';
 //indicator
 export './const/indicator.dart';
 export 'code_providers/time_provider.dart';
-export 'code_providers/sytemInfo_provider.dart';
+export 'code_providers/sytemInfoProvider.dart';
