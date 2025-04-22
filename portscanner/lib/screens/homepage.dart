@@ -53,11 +53,11 @@ class _Home extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Networking Tool"),
-        centerTitle: false,
-        // actions: [IconButton(onPressed: () {}, icon: Icon(Icons.menu))],
-      ),
+      // appBar: AppBar(
+      //   title: Text("Networking Tool"),
+      //   centerTitle: false,
+      //   // actions: [IconButton(onPressed: () {}, icon: Icon(Icons.menu))],
+      // ),
       // drawer: Drawer(),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left: 20, right: 20),
