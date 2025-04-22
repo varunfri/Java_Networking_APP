@@ -1,12 +1,19 @@
 import 'export.dart';
 
+// void main() {
+//   runApp(
+//     ChangeNotifierProvider(
+//       create: (_) => LocalTimeProvider(),
+//       child: const MyApp(),
+//     ),
+//   );
+// }
+
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => LocalTimeProvider(),
-      child: const MyApp(),
-    ),
-  );
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_)=> LocalTimeProvider()),
+    ChangeNotifierProvider(create: (_) => SystemInfo()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

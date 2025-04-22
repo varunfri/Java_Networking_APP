@@ -27,21 +27,23 @@ class WelcomeWrap extends StatelessWidget {
               ContainerButton(
                 iconName: Icons.lan_outlined,
                 title: "Port Scanner",
-                onClick: () {},
+                onClick: () {
+                  runJavaCode();
+                },
               ),
-             
+
               ContainerButton(
                 iconName: Icons.device_hub_outlined,
                 title: "System Interface Details",
                 onClick: () {},
               ),
-              
+
               ContainerButton(
                 iconName: Icons.language_outlined,
                 title: "Get Network Details",
                 onClick: () {},
               ),
-             
+
               ContainerButton(
                 iconName: Icons.wifi,
                 title: "Wifi Scanning",
@@ -64,9 +66,7 @@ class ContainerButton extends StatelessWidget {
   final String title;
   final IconData iconName;
   final Function()? onClick;
-  const ContainerButton(
-    
-    {
+  const ContainerButton({
     super.key,
     required this.title,
     required this.onClick,
@@ -90,7 +90,10 @@ class ContainerButton extends StatelessWidget {
             Gap(20),
             CustomText(text: title, size: 20),
             Spacer(),
-            IconButton(onPressed: onClick, icon: Icon(Icons.keyboard_arrow_right_outlined)),
+            IconButton(
+              onPressed: onClick,
+              icon: Icon(Icons.keyboard_arrow_right_outlined),
+            ),
           ],
         ),
       ),
