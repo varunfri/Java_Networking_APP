@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       title: "Networking App",
       // theme: lightMode,
       // darkTheme: darkMode,
+      //checking with remote connections
       themeMode: ThemeMode.system,
       home: const Home(),
     );
