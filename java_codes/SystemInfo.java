@@ -1,28 +1,33 @@
 package java_codes;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SystemInfo {
     public static void main(String[] args) {
         try {
-            // Get OS Name
             String os = System.getProperty("os.name");
-
-            // Get Java Version
             String javaVersion = System.getProperty("java.version");
-
-            // Get Hostname
             String hostname = InetAddress.getLocalHost().getHostName();
 
-            // Display the information
-            System.out.println("Operating System: " + os);
-            System.out.println("Java Version: " + javaVersion);
-            System.out.println("Hostname: " + hostname);
+            Map<String, String> data = new HashMap<>();
+            data.put("OS", os);
+            data.put("JavaVersion", javaVersion);
+            data.put("Hostname", hostname);
 
-        } catch (UnknownHostException e) {
-            System.out.println("Unable to get hostname");
-            e.printStackTrace();
+            // Convert to JSON-like string
+            System.out.println("{");
+            int count = 0;
+            for (Map.Entry<String, String> entry : data.entrySet()) {
+                count++;
+                String comma = count < data.size() ? "," : "";
+                System.out.println("  \"" + entry.getKey() + "\": \"" + entry.getValue() + "\"" + comma);
+            }
+            System.out.println("}");
+
+        } catch (Exception e) {
+            System.err.println("{\"error\": \"" + e.getMessage() + "\"}");
         }
     }
 }
