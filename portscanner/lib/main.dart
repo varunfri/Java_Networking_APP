@@ -1,0 +1,26 @@
+import 'export.dart';
+
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => LocalTimeProvider(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Networking App",
+      // theme: lightMode,
+      // darkTheme: darkMode,
+      themeMode: ThemeMode.system,
+      home: const Home(),
+    );
+  }
+}
