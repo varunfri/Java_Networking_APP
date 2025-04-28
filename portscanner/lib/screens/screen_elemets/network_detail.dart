@@ -6,6 +6,8 @@ class NetworkDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sysInfo = Provider.of<SystemInfo>(context);
+    final netInfo = Provider.of<Netinfoprovider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -20,7 +22,7 @@ class NetworkDetails extends StatelessWidget {
           ],
         ),
         Gap(20),
-        CustomText(text: "HostName: ", size: 18),
+
         Consumer<LocalTimeProvider>(
           builder: (_, localTime, child) {
             var timeDate = DateFormat(
@@ -29,8 +31,9 @@ class NetworkDetails extends StatelessWidget {
             return CustomText(text: "Time: $timeDate", size: 18);
           },
         ),
-        CustomText(text: "OS: ", size: 18),
-        CustomText(text: "Java Version: ", size: 18),
+        CustomText(text: "Host Name: ${sysInfo.hostName}", size: 18),
+        CustomText(text: "OS: ${sysInfo.os}", size: 18),
+        CustomText(text: "Java Version: ${sysInfo.javaVersion}", size: 18),
 
         Gap(20),
         Row(
@@ -45,12 +48,11 @@ class NetworkDetails extends StatelessWidget {
         ),
 
         Gap(20),
-        
 
-        CustomText(text: "Local IP:", size: 18),
+        CustomText(text: "Local IP: ${netInfo.localip}", size: 18),
 
-        CustomText(text: "Public IP: ", size: 18),
-        CustomText(text: "Interface Connected:", size: 18),
+        CustomText(text: "Public IP: ${netInfo.publicip} ", size: 18),
+        CustomText(text: "Interface Connected: ${netInfo.interface}", size: 18),
       ],
     );
   }

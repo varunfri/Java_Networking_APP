@@ -1,7 +1,7 @@
 import 'package:portscanner/export.dart';
 
-class WelcomeWrap extends StatelessWidget {
-  const WelcomeWrap({super.key});
+class NetworkToolUI extends StatelessWidget {
+  const NetworkToolUI({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,33 +28,64 @@ class WelcomeWrap extends StatelessWidget {
                 iconName: Icons.lan_outlined,
                 title: "Port Scanner",
                 onClick: () {
-                  runJavaCode();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => PortScannerUi()),
+                  );
                 },
               ),
 
               ContainerButton(
-                iconName: Icons.device_hub_outlined,
-                title: "System Interface Details",
+                iconName: Icons.timeline_outlined,
+                title: "Trace Route Details",
                 onClick: () {
-                  SystemInfo().getSystemInfo();
+                  ToastNotify().toastMessage(
+                    title: "Launching Soon....",
+                    type: ToastificationType.info,
+                    context: context,
+                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (_) => TraceRouteUi()),
+                  // );
                 },
               ),
 
               ContainerButton(
-                iconName: Icons.language_outlined,
+                iconName: Icons.cell_tower_outlined,
                 title: "Get Network Details",
-                onClick: () {},
+                onClick: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => NetDetailsUi()),
+                  );
+                },
               ),
 
               ContainerButton(
-                iconName: Icons.wifi,
-                title: "Wifi Scanning",
-                onClick: () {},
+                iconName: Icons.travel_explore_outlined,
+                title: "WHOIS Lookup",
+                onClick: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (_) => WhoisLookup()),
+                  // );
+                  ToastNotify().toastMessage(
+                    title: "Launching Soon....",
+                    type: ToastificationType.info,
+                    context: context,
+                  );
+                },
               ),
               ContainerButton(
                 iconName: Icons.flip_camera_android_outlined,
                 title: "Reverse IP Lookup",
-                onClick: () {},
+                onClick: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => ReverseIpUi()),
+                  );
+                },
               ),
             ],
           ),
@@ -88,7 +119,7 @@ class ContainerButton extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Row(
           children: [
-            Icon(iconName),
+            Icon(iconName, size: 30),
             Gap(20),
             CustomText(text: title, size: 20),
             Spacer(),

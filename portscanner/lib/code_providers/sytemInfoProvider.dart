@@ -24,6 +24,7 @@ class SystemInfo with ChangeNotifier {
         _hostName = jsonOutput['Hostname'];
         _javaVersion = jsonOutput['JavaVersion'];
         notifyListeners();
+        debugPrint("Os $_os\nJava: $_javaVersion");
       } else {
         debugPrint("Java Error: ${result.stderr}");
       }

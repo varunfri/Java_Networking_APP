@@ -16,16 +16,63 @@ class _Home extends State<Home> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       checkStatus();
     });
+    Future.microtask(() {
+      Provider.of<SystemInfo>(context, listen: false).getSystemInfo();
+      Provider.of<Netinfoprovider>(context, listen: false).getNetInfo();
+      Provider.of<LocationAccess>(context, listen: false).getLocation();
+    });
   }
 
-  void checkStatus() async {
+  Future<void> checkStatus() async {
+    dynamic result;
+    Position? location;
     ShowIndicator().indicate(context: context);
-    final result = await NetworkStatus().status();
+    await Future.delayed(Duration(seconds: 5), () async {
+      result = await NetworkStatus().status();
+      location = await Geolocator.getCurrentPosition();
+    });
+
+    // Future.delayed(Duration(seconds: 10));
     //close the indicator
-    Navigator.pop(context);
 
     if (result == 200) {
       debugPrint("Network Connected");
+      debugPrint("Location Access $location");
+
+      try {   
+        Position position = await Geolocator.getCurrentPosition();
+        debugPrint("Location Access: $position");
+      
+        if (context.mounted) {
+          Navigator.pop(context);
+        }
+      } catch (e) {
+        debugPrint("Location access failed: $e");
+        showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder:
+            (_) => AlertDialog(
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("Internet is connected!!"),
+                  Text("Location service is not enabled!!"),
+                ],
+              ),
+              actions: [
+                OutlinedButton.icon(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    checkStatus();
+                  },
+                  label: Text("Reconnect"),
+                  icon: Icon(Icons.autorenew_outlined),
+                ),
+              ],
+            ),
+      );
+      }
     } else {
       debugPrint("Please Connect internet");
       //show dialog to reconnect and check
@@ -34,7 +81,13 @@ class _Home extends State<Home> {
         barrierDismissible: false,
         builder:
             (_) => AlertDialog(
-              content: Text("Internet is not connected!!"),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("Internet is not connected!!"),
+                  Text("Location service is not enabled!!"),
+                ],
+              ),
               actions: [
                 OutlinedButton.icon(
                   onPressed: () {
@@ -75,7 +128,7 @@ class _Home extends State<Home> {
                   //child
                   child: SingleChildScrollView(
                     padding: EdgeInsets.all(20),
-                    child: WelcomeWrap(),
+                    child: NetworkToolUI(),
                   ),
                 ),
                 SizedBox(width: 20),
@@ -91,9 +144,16 @@ class _Home extends State<Home> {
                 ),
               ],
             ),
-             
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          setState(() {});
+          ShowIndicator().indicate(context: context);
+        },
+        label: Text("Reload"),
+        icon: Icon(Icons.refresh_outlined),
       ),
     );
   }

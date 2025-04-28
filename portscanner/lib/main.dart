@@ -1,3 +1,6 @@
+
+import 'package:portscanner/code_providers/whois_provider.dart';
+
 import 'export.dart';
 
 // void main() {
@@ -11,8 +14,14 @@ import 'export.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_)=> Netinfoprovider()),
     ChangeNotifierProvider(create: (_)=> LocalTimeProvider()),
     ChangeNotifierProvider(create: (_) => SystemInfo()),
+    ChangeNotifierProvider(create: (_)=> PortScan()),
+    ChangeNotifierProvider(create: (_)=> GeoProvider()),
+    ChangeNotifierProvider(create: (_)=> LocationAccess ()),
+    ChangeNotifierProvider(create: (_)=> ReverseIpProvider()),
+    ChangeNotifierProvider(create: (_) => WhoisProvider())
   ], child: const MyApp()));
 }
 

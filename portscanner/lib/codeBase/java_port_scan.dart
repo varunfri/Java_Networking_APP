@@ -5,7 +5,7 @@
   void runJavaCode() async {
     final result = await Process.run('java', [
       '-jar',
-      'assets/java_codes/SystemInfo.jar',
+      'assets/java_codes/portscan.jar','google.com',
     ], runInShell: true);
 
     debugPrint('Result: ${result.stdout}');
