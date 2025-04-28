@@ -35,7 +35,9 @@ class WelcomeWrap extends StatelessWidget {
               ContainerButton(
                 iconName: Icons.device_hub_outlined,
                 title: "System Interface Details",
-                onClick: () {},
+                onClick: () {
+                  SystemInfo().getSystemInfo();
+                },
               ),
 
               ContainerButton(

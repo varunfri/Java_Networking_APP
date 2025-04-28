@@ -5,7 +5,7 @@
   void runJavaCode() async {
     final result = await Process.run('java', [
       '-jar',
-      'assets/java_codes/Main.jar',
+      'assets/java_codes/SystemInfo.jar',
     ], runInShell: true);
 
     debugPrint('Result: ${result.stdout}');
