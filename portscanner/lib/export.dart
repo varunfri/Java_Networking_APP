@@ -30,6 +30,7 @@ export 'code_providers/net_provider.dart';
 export './code_providers/portscan_provider.dart';
 export './code_providers/geo_provider.dart';
 export 'code_providers/reverse_ip_provider.dart';
+export 'code_providers/whois_provider.dart';
 
 // Tool_UI
 export './tool_pages/net_details_ui.dart';

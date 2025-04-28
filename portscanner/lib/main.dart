@@ -1,16 +1,7 @@
 
-import 'package:portscanner/code_providers/whois_provider.dart';
+
 
 import 'export.dart';
-
-// void main() {
-//   runApp(
-//     ChangeNotifierProvider(
-//       create: (_) => LocalTimeProvider(),
-//       child: const MyApp(),
-//     ),
-//   );
-// }
 
 void main() {
   runApp(MultiProvider(providers: [
